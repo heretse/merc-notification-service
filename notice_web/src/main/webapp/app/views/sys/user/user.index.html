@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="row" style="border-bottom: 1px solid #e6e1e1;">
+        <div class="col-xs-12" style="margin-bottom: 10px; left: 18px;">
+            <span >{{"sidebar.local"|translate}}&nbsp;:&nbsp;{{"sidebar.nav.MENU_SYS"|translate}}&nbsp;<img src="app/img/menu/space.png">&nbsp;{{"sidebar.nav.MENU_USER"|translate}}</span>
+
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="col-xs-12 " style="margin-top: 30px;background-color: #d2d6df; height: 10px;"></div>
+        <div class="col-xs-12" style="background-color: #ffffff;padding-top: 7px;padding-bottom: 7px;margin-bottom: 20px;">
+            <div class="col-xs-12 col-lg-10" style="padding-left: 0px;">
+                <div class="col-xs-12 col-lg-5" style="margin-left: -15px;">
+                    <div class="input-group form-group" style="margin-top: 15px;">
+                        <label class="input-group-addon" style="background-color: transparent;padding-left: 0px;">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;:</label>
+                        <input ng-model="filter.account" maxlength="16" ng-keydown="doEnter($event)" placeholder="请输入账号"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-7" style="margin-left: -15px;"></div>
+            </div>
+            <div class="col-xs-12 col-lg-2" style="padding-left: 0px;">
+                <div class="input-group form-group" style="margin-top: 15px;" id="searchBtn">
+                    <a class="btn btn-ssmp" ng-click="search()">
+                        <img src="app/img/search-btn.png" alt="search" style="margin-top: -2px;">&nbsp;&nbsp;查&nbsp;询
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;margin-bottom: 15px;">
+            <div class="col-md-12" style="left: 15px; width: 97.5%">
+                <div class="input-group form-group" style="margin-top: 0;margin-bottom: 0;">
+                    <div class="btn-group">
+                        <a class="btn btn-ssmp" ng-click="add()">
+                            <img src="app/img/add-btn.png" alt="add" style="position: relative;top: -2px;">&nbsp;新增账号
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" >
+            <div class="col-xs-12">
+                <div class="table-responsive">
+                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%">账号</th>
+                                <th style="width: 30%">创建时间</th>
+	                            <th style="text-align:center;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="node in nodes">
+                                <td>{{node.uname}}</a></td>
+                                <td>{{node.inTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td align="center">
+                                    <a title="{{'common.edit' | translate}}" style="text-decoration:underline" ng-click="edit(node)">编辑</a>
+                                    <a title="{{'common.delete' | translate}}" style="color: red;text-decoration:underline" ng-hide="node.uname==='admin' " ng-click="delete(node)">删除</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.table-responsive -->
+	            <label class="ngLabel ng-binding pull-left" style="padding-top: 10px;">{{"pagination.total"| translate}}: {{ 0 || total}}</label>
+                <ul class="pagination-sm pagination ng-isolate-scope ng-valid ng-dirty ng-valid-parse">
+                    <li>
+                        <a ng-click="goPage(page)"><span class="fa fa-refresh"></span></a>
+                    </li>
+                </ul>
+                <uib-pagination max-size="5" boundary-links="true" total-items="total" ng-change="goPage(page)" ng-model="page" class="pagination-sm"
+                                previous-text="{{'pagination.previous' | translate}}" next-text="{{'pagination.next' | translate}}"
+                                first-text="{{'pagination.first' | translate}}" last-text="{{'pagination.last' | translate}}"></uib-pagination>
+            </div><!-- /span -->
+        </div><!-- /row -->
+    </div><!-- /.col -->
+</div><!-- /.row -->

@@ -1,0 +1,52 @@
+<!-- START Top Navbar-->
+<nav role="navigation" class="navbar topnavbar"  ng-controller="TopNavBarCtrl">
+   <div class="navbar-header">
+       <a  class="navbar-brand"  style="margin-left: 32px;">
+         <div class="brand-logo" style="padding: 0;width: 230px;margin-top: 18px;">
+             <img src="app/img/nav_logo.png" alt="App Logo" class="img-responsive" style="width:118px;height: 21px;"/>
+             <span style="color: #FFffff;font-size: 24px; font-family: Microsoft YaHei;">| 通知服务</span>
+         </div>
+<!--          <div class="brand-logo-collapsed">
+            <img src="app/img/logo-single.png" alt="App Logo" class="img-responsive" style="max-width: none;"/>
+         </div> -->
+      </a>
+   </div>
+   <!-- END navbar header-->
+   <!-- START Nav wrapper-->
+   <div class="nav-wrapper">
+   <!-- START Left navbar-->
+      <ul class="nav navbar-nav" ng-hide="true">
+         <li>
+            <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+            <a href="#" style="height: 55px;" trigger-resize="" ng-click="app.layout.isCollapsed = !app.layout.isCollapsed" class="hidden-xs">
+               <em class="fa fa-2x fa-navicon"></em>
+            </a>
+            <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+            <a href="#" style="height: 55px;" toggle-state="aside-toggled" no-persist="no-persist" class="visible-xs sidebar-toggle">
+               <em class="fa fa-2x fa-navicon"></em>
+            </a>
+         </li>
+      </ul>
+      <!-- END Left navbar-->
+     <ul class="nav navbar-nav navbar-right">
+        <li style="padding-top: 15px;padding-right: 60px;cursor: default;">
+            <div style="display: inline;">
+                <img src="app/img/user/user-nomal.png" style="height: 25px;margin-top: -7px;" alt="user"><span style="color: #FFD88A;font-size: 18px;margin-right: -20px;margin-left: 13px;">{{user.name}}</span>
+            </div>
+         </li>
+        <li>
+<!--            <a id="logout">
+                <img src="app/img/user/logout-nomal.png" alt="logout"><span style="color: #FFD88A">退出</span>
+            </a>-->
+            <a id="logout"  ng-click="logout()"  title="{{'common.logout'|translate}}">
+                <img src="app/img/exit.png" alt="logout" style="margin-top: 6px;margin-right: 2px; width: 35px;">
+                <!--<em class="fa fa-2x fa-lock" style="margin-top: 8px;margin-right: 20px;"></em>-->
+            </a>
+         </li>
+
+      </ul>
+      <!-- END Right Navbar-->
+   </div>
+   <!-- END Nav wrapper-->
+</nav>
+<!-- END Top Navbar-->

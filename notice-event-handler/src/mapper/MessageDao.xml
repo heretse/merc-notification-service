@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bp.data.handler.dao.MessageDao">
+	<select id="synMess" resultType="Map">
+		SELECT
+		a.mac,b.group_name as t_name,d.group_name,d.delay
+		FROM
+		terminal a
+		LEFT JOIN terminal_group b ON a.terminal_group_id = b.id
+		INNER JOIN notification_terminal_relation c ON c.terminal_group_id=b.id
+		INNER JOIN notification_group d ON d.id=c.notification_group_id
+		AND a.mac=#{0} ORDER BY d.delay
+	</select>
+	
+		<select id="synDelay" >
+			SELECT a.delay from notification_group a WHERE a.group_name==#{0}
+	</select>
+</mapper>

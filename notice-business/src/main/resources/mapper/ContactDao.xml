@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bp.notice.business.dao.ContactDao">
+	<select id="queryMethods" resultType="Map">
+
+		SELECT * FROM
+		notification_method
+	</select>
+
+	<select id="query" resultType="Map">
+
+		SELECT
+		a.id,
+		a.remark,
+		a.in_time,
+		a.object_name,
+		c.user_name
+		FROM
+		notification_object a
+		LEFT JOIN `user` c ON a.user_id = c.id
+		<where>
+			1 = 1
+			<if test="cname!=null and cname !=''">
+
+				AND a.object_name LIKE CONCAT('%','${cname}','%' )
+			</if>
+			<if test="cid != null and cid.size() > 0">
+			    AND a.id IN
+			    <foreach item="item" index="index" collection="cid"   open="(" separator="," close=")">  
+			              #{item}   
+			    </foreach>  
+			</if>
+			<!-- 
+			<if test="mid!=null and mid !=''">
+
+				AND b.notification_method_id =#{mid}
+			</if>
+ 			-->
+		</where>
+		ORDER BY a.id DESC
+		<if test="size!=null and page!=null ">
+
+			LIMIT ${(page-1)*size}, ${size}
+		</if>
+
+	</select>
+
+	<select id="count" resultType="Long">
+
+		SELECT
+		COUNT(*)
+		FROM
+		notification_object
+		<where>
+			1 = 1
+			<if test="cname!=null and cname !=''">
+				AND object_name LIKE CONCAT('%','${cname}','%' )
+			</if>
+			<if test="cid != null and cid.size() > 0">
+			    AND id IN
+			    <foreach item="item" index="index" collection="cid"   open="(" separator="," close=")">  
+			              #{item}   
+			    </foreach>  
+			</if>
+			<!-- 
+			<if test="mid!=null and mid !=''">
+
+				AND b.notification_method_id =#{mid}
+			</if>
+			 -->
+		</where>
+
+	</select>
+
+	<select id="queryMethodsByCID" resultType="Map">
+
+		SELECT
+		a.notification_account AS caccount,
+		a.notification_enabled AS
+		isEnabled,
+		a.notification_method_id AS mid,
+		a.notification_method AS mname
+		FROM
+		object_method_relation a
+		WHERE
+		a.notification_object_id = #{0};
+
+	</select>
+	<insert id="add" useGeneratedKeys="true" keyProperty="cid"
+		keyColumn="id">
+		INSERT INTO
+		notification_object(object_name,remark,in_time,user_id)
+		VALUES(#{cname},#{remark},SYSDATE(),#{userID})
+	</insert>
+
+	<insert id="insertRelaiton1">
+
+		INSERT INTO object_method_relation(
+		user_id,
+		notification_object_id,
+		notification_method_id,
+		notification_account,
+		notification_method,
+		notification_enabled,
+		in_time
+		) VALUES
+		(
+		#{userID},
+		#{cid},
+		#{mid},
+		#{caccount},
+		#{method},
+		#{isEnabled},
+		SYSDATE()
+		)
+	</insert>
+
+
+	<insert id="insertRelaiton">
+
+		INSERT INTO object_method_relation(
+		user_id,
+		notification_object_id,
+		notification_method_id,
+		notification_account,
+		notification_method,
+		notification_enabled,
+		in_time
+		) VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.userID},#{item.cid},#{item.mid},#{item.caccount},#{item.method},#{item.isEnabled},SYSDATE())
+		</foreach>
+	</insert>
+
+	<select id="getMethodByid" resultType="string">
+
+		SELECT method FROM notification_method WHERE id=#{0}
+	</select>
+
+	<update id="edit">
+		UPDATE notification_object
+		SET object_name =#{cname},
+		remark =#{remark},
+		up_time=SYSDATE()
+		WHERE id=#{cid}
+	</update>
+
+	<delete id="deleteRelationByCID">
+
+		DELETE FROM object_method_relation WHERE notification_object_id =#{0}
+
+	</delete>
+
+	<delete id="delete">
+		DELETE FROM notification_object WHERE id =#{0}
+	</delete>
+
+	<delete id="deleteGroupRelation">
+
+		DELETE FROM group_object_relation WHERE notification_object_id =#{0}
+	</delete>
+
+</mapper>

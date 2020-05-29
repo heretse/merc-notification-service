@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bp.notice.business.dao.UserDao">
+	<select id="login" resultType="LoginModel">
+
+		SELECT * FROM user
+		WHERE user_name =#{0} AND pwd =#{1}
+	</select>
+
+	<select id="queryByName" resultType="Map">
+
+		SELECT * FROM user
+		WHERE user_name =#{0}
+	</select>
+
+	<select id="queryAccount" resultType="Map">
+		SELECT * FROM user a
+		<where>
+			1 = 1
+			<if test="uname!=null and uname !=''">
+
+				AND a.user_name like CONCAT('%','${uname}','%' )
+			</if>
+
+		</where>
+		ORDER BY a.id DESC
+		<if test="size!=null and page!=null ">
+
+			LIMIT ${(page-1)*size}, ${size}
+		</if>
+
+	</select>
+	<select id="countAccount" resultType="Long">
+
+		SELECT COUNT(*) FROM user a
+
+		<where>
+			1 = 1
+			<if test="uname!=null and uname !=''">
+
+				AND a.user_name LIKE CONCAT('%','${uname}','%' )
+			</if>
+		</where>
+		ORDER BY a.id DESC
+	</select>
+	<insert id="addAccount">
+
+		INSERT IGNORE INTO user (user_name,pwd,in_time)
+		VALUES (#{uname},#{pwd},SYSDATE())
+	</insert>
+
+	<update id="editAccount">
+		UPDATE IGNORE user
+		SET user_name =#{uname},
+		up_time = SYSDATE(),
+		pwd =#{pwd}
+		WHERE id =#{uid}
+	</update>
+	<delete id="deleteAccount">
+
+		DELETE FROM user WHERE id = #{0}
+	</delete>
+
+	<select id="getAccountByToken" resultType="Map">
+		SELECT * FROM user WHERE token =#{0}
+	</select>
+
+	<update id="updateTokenByuname">
+
+		UPDATE IGNORE user
+		SET token =#{token},
+		up_time = SYSDATE()
+		WHERE user_name =#{uname}
+
+	</update>
+
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="error">
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<ThresholdFilter level="trace" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %class{36} %L %M - %msg%xEx%n" />
+		</Console>
+
+		<!-- <File name="log" fileName="F:/EDUToHome/EDUToHome/log/test.log"
+			append="false">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
+		</File>
+
+		<File name="ERROR" fileName="F:/EDUToHome/EDUToHome/logs/error.log">
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout
+				pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+		</File> -->
+
+		<!-- <RollingFile name="RollingFile" fileName="F:/EDUToHome/EDUToHome/logs/web.log" 
+			filePattern="F:/EDUToHome/EDUToHome/logs/$${date:yyyy-MM}/web-%d{MM-dd-yyyy}-%i.log.gz"> 
+			<PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} 
+			%L %M - %msg%xEx%n"/> <SizeBasedTriggeringPolicy size="10MB"/> </RollingFile> -->
+
+
+		<RollingFile name="RollingFile" fileName="/app/myLogs/notice-wechat-notification.log"
+			filePattern="/app/myLogs/notice-wechat-notification-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %class{36} %L %M - %msg%xEx%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true"
+					interval="1" />
+			</Policies>
+			 <DefaultRolloverStrategy max="20"/>  
+		</RollingFile>
+	</appenders>
+
+	<loggers>
+		<root level="trace" additivity="false">
+			<appender-ref ref="RollingFile" />
+			<appender-ref ref="Console" />
+			<!-- <appender-ref ref="ERROR" />
+			<appender-ref ref="log" /> -->
+		</root>
+	</loggers>
+</configuration>  

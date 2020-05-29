@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bp.notice.business.dao.GroupTerminalDao">
+
+
+	<select id="queryGroupTerminal" resultType="Map">
+
+		SELECT * FROM terminal_group a
+
+		<where>
+			1 = 1
+			<if test="gtname!=null and gtname !=''">
+
+				AND a.group_name LIKE CONCAT('%','${gtname}','%' )
+			</if>
+
+		</where>
+		ORDER BY a.id DESC
+
+		<if test="size!=null and page!=null ">
+
+			LIMIT ${(page-1)*size}, ${size}
+		</if>
+
+	</select>
+	<select id="countGroupTerminal" resultType="Long">
+
+		SELECT COUNT(*) FROM terminal_group a
+
+		<where>
+
+			1 = 1
+			<if test="gtname!=null and gtname !=''">
+
+				AND a.group_name LIKE CONCAT('%','${gtname}','%' )
+			</if>
+
+		</where>
+	</select>
+
+	<select id="queryGroupBygtID" resultType="Map">
+		SELECT b.id as
+		gid,b.group_name as gname FROM
+		notification_terminal_relation a
+		INNER
+		JOIN notification_group b
+		ON a.notification_group_id = b.id
+		WHERE
+		a.terminal_group_id =#{0}
+
+	</select>
+
+	<select id="queryContactByGID" resultType="Map">
+
+		SELECT
+		temp.id,
+		contactName,
+		IFNULL(d.notification_method,"") AS
+		contactMethod,
+		IFNULL(d.notification_account,"") AS contactAccount
+		FROM
+		(
+		SELECT
+		a.id,
+		a.object_name AS contactName,
+		a.remark
+		FROM
+		notification_object a
+		INNER JOIN group_object_relation b ON a.id =
+		b.notification_object_id
+		INNER JOIN notification_group c ON
+		b.notification_group_id = c.id
+		WHERE c.id = #{gid}
+		) AS temp
+		LEFT JOIN
+		object_method_relation d ON temp.id = d.notification_object_id
+		and
+		d.notification_enabled =1
+		LEFT JOIN notification_method e ON
+		d.notification_method_id = e.id
+
+		ORDER BY temp.id DESC
+
+		<if test="size!=null and page!=null ">
+
+			LIMIT ${(page-1)*size}, ${size}
+		</if>
+
+	</select>
+
+	<select id="countContactByGID" resultType="Long">
+
+		SELECT
+		COUNT(*)
+		FROM
+		(
+		SELECT
+		a.id,
+		a.object_name AS contactName,
+		a.remark
+		FROM
+		notification_object a
+		INNER JOIN group_object_relation b ON a.id =
+		b.notification_object_id
+		INNER JOIN notification_group c ON
+		b.notification_group_id = c.id
+		WHERE c.id = #{gid}
+		) AS temp
+		LEFT JOIN
+		object_method_relation d ON temp.id = d.notification_object_id
+		and
+		d.notification_enabled =1
+		LEFT JOIN notification_method e ON
+		d.notification_method_id = e.id
+
+		ORDER BY temp.id DESC
+
+	</select>
+
+	<select id="queryTerminalBygtID" resultType="Map">
+
+		SELECT a.* FROM terminal a
+		WHERE a.terminal_group_id =#{gtId}
+		ORDER BY a.id
+		DESC
+
+		<if test="size!=null and page!=null ">
+
+			LIMIT ${(page-1)*size}, ${size}
+		</if>
+
+	</select>
+	<select id="countTerminalBygtID" resultType="Long">
+
+		SELECT COUNT(*) FROM
+		terminal a
+		WHERE terminal_group_id =#{gtId}
+
+		ORDER BY a.id DESC
+	</select>
+	<select id="unBindMacs" resultType="Map">
+
+		SELECT * FROM terminal a
+		WHERE 
+		terminal_group_id is null
+		ORDER BY
+		a.id DESC
+
+	</select>
+	<update id="bind">
+
+		UPDATE terminal
+		SET terminal_group_id = #{0}
+		WHERE mac
+		= #{1}
+
+	</update>
+
+	<insert id="addGroupTerminal">
+
+		INSERT INTO
+		terminal_group(user_id,group_name,remark,in_time,up_time)
+
+		VALUES(#{userID},#{gtname},#{remark},SYSDATE(),SYSDATE())
+
+	</insert>
+
+	<update id="editGroupTerminal">
+
+		UPDATE terminal_group
+		SET group_name =#{gtname},
+		remark =#{remark},
+		up_time=SYSDATE()
+		WHERE id=#{gtId}
+	</update>
+
+	<delete id="deleteGroupTerminal">
+
+		DELETE FROM terminal_group WHERE id =#{0}
+
+	</delete>
+
+	<update id="deleteBind">
+
+		UPDATE terminal
+		SET terminal_group_id = null,
+		up_time=SYSDATE()
+		WHERE terminal_group_id=#{0}
+	</update>
+
+	<delete id="deleteGroupRelation">
+
+		DELETE FROM notification_terminal_relation
+		WHERE terminal_group_id =#{0}
+	</delete>
+
+</mapper>

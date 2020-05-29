@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body" ng-bind-html="msg">
+</div>
+<div class="modal-footer" ng-show="!hideBtn">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center;">
+            <a id="delIndex" style="margin: 0 9px;" ng-repeat="btn in buttons" class="btn {{$index==0?'btn-primary del-submit':$index==1?'btn-default del-close':'btn-warning'}}" type="button" ng-click="callback(btn)">{{btn.label}}</a>
+        </div>
+    </div>
+</div>

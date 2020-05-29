@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bp.notice.business.dao.GroupDao">
+
+	<select id="query" resultType="Map">
+
+		SELECT a.id,a.group_name,a.in_time,a.delay,b.user_name FROM
+		notification_group a
+		LEFT JOIN user b
+		on a.user_id = b.id
+
+		<where>
+			1 = 1
+			<if test="gname!=null and gname !=''">
+
+				AND a.group_name LIKE CONCAT('%','${gname}','%' )
+			</if>
+
+		</where>
+		ORDER BY a.id DESC
+		<if test="size!=null and page!=null ">
+
+			LIMIT ${(page-1)*size}, ${size}
+		</if>
+
+	</select>
+
+	<select id="count" resultType="Long">
+
+		SELECT count(*) FROM
+		notification_group a
+		LEFT JOIN user b
+		on a.user_id =
+		b.id
+
+		<where>
+			1 = 1
+			<if test="gname!=null and gname !=''">
+
+				AND a.group_name LIKE CONCAT('%','${gname}','%' )
+			</if>
+
+		</where>
+
+	</select>
+
+
+	<select id="queryGTByID" resultType="Map">
+
+		SELECT a.* FROM terminal_group a
+		INNER JOIN
+		notification_terminal_relation b
+		on a.id = b.terminal_group_id
+		WHERE
+		b.notification_group_id =#{gid}
+
+		ORDER BY a.id DESC
+		<if test="size!=null and page!=null ">
+
+			LIMIT ${(page-1)*size}, ${size}
+		</if>
+
+	</select>
+
+	<select id="countqueryGTByID" resultType="Long">
+
+		SELECT COUNT(*) FROM
+		terminal_group a
+		INNER JOIN notification_terminal_relation b
+		on a.id =
+		b.terminal_group_id
+		WHERE b.notification_group_id =#{gid}
+
+	</select>
+
+	<select id="queryUNGTByID" resultType="map">
+
+		SELECT
+		a.id as
+		gtId,a.group_name as gtname
+		FROM
+		terminal_group a
+		WHERE
+		NOT EXISTS (
+		SELECT
+		*
+		FROM
+		notification_terminal_relation b
+		WHERE
+		a.id =
+		b.terminal_group_id and b.notification_group_id = #{gid}
+		)
+
+	</select>
+
+	<select id="queryUNBindContactsByID" resultType="map">
+
+		SELECT
+		a.id as cid,a.object_name as cname
+		FROM
+		notification_object a
+		WHERE
+		NOT
+		EXISTS (
+		SELECT
+		*
+		FROM
+		group_object_relation b
+		WHERE
+		a.id =
+		b.notification_object_id and b.notification_group_id =#{gid}
+		)
+
+	</select>
+
+	<delete id="deleteGroupTerminalRelelation">
+
+		DELETE FROM notification_terminal_relation
+
+		WHERE notification_group_id =#{0}
+
+	</delete>
+
+	<insert id="insertGroupTerminalRelelation">
+
+		REPLACE INTO notification_terminal_relation
+		(notification_group_id,terminal_group_id) VALUES(#{0},#{1})
+
+	</insert>
+
+
+	<delete id="deleteContactRelelation">
+
+		DELETE FROM group_object_relation
+
+		WHERE notification_group_id =#{0}
+
+	</delete>
+
+
+	<insert id="insertContactRelelation">
+
+		REPLACE INTO group_object_relation
+		(notification_group_id,notification_object_id) VALUES(#{0},#{1})
+
+	</insert>
+
+	<insert id="add">
+
+		INSERT IGNORE INTO notification_group(user_id,group_name,delay,in_time)
+		VALUES (#{userID},#{gname},#{delaytime},SYSDATE())
+
+	</insert>
+
+	<insert id="edit">
+
+		UPDATE notification_group
+		SET group_name =#{gname},
+		delay =#{delaytime},
+		up_time=SYSDATE()
+		WHERE id =#{gid}
+	</insert>
+
+	<delete id="delete">
+
+		DELETE FROM notification_group
+		WHERE id =#{gid}
+	</delete>
+
+
+</mapper>

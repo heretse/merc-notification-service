@@ -1,0 +1,42 @@
+<div class="modal-header" style="border: none !important;min-height: 50px;background-color: #27242b;">
+    <div style="position: absolute;left: 20px;font-size: 18px;line-height: 2em;color: white;">新增通报组</div>
+    <a type="button"  class="close" style="margin-top: 4px;margin-right: -3px;" ng-click="exit()"><img src="app/img/colse-model.png" alt="X"></a>
+</div>
+
+<div class="modal-body" style="padding: 20px 20px 10px 20px;">
+    <div class=" col-lg-12" style="border: 1px solid #e6e1e1;padding-top: 10px;padding-bottom: 30px;margin-bottom:30px;">
+    <div class="col-md-12" style="margin-top: 25px;">
+        <div class="col-md-2 " style=" width: 86px;margin-left: -18px;">
+            <label class="required">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
+        </div>
+        <div class="col-md-10">
+            <input type="text" ng-model="model.name"  maxlength="32"  placeholder="请输入5~32位通报组名称" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-12" style="margin-top: 25px;">
+        <div class="col-md-2" style="margin-left: -18px;width: 86px;">
+            <label>发报延迟</label>
+        </div>
+        <div class="col-md-6">
+            <select ng-model="model.delaytime"  class="form-control" >
+                <option value="0" selected="selected">0</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+        <div class="col-md-4" style="line-height: 38px;">（单位：分钟）</div>
+    </div>
+        </div>
+</div>
+
+<div class="modal-footer" style="border: none !important;padding: 10px;">
+    <div class=" col-lg-12" style="text-align: center;margin-bottom: 25px;">
+        <a class="btn btn-default pull-left" ng-click="confirm(model)" style="width: 80px; border-radius: 5px;margin-left: 160px;background: linear-gradient(#225288, #052973);border: none;color: #ffffff;">提交</a>
+        <a class="btn btn-default pull-right" ng-click="exit()" style="width: 80px; border-radius: 5px;margin-right: 160px;background: linear-gradient(#d8d5d5, #959595);border: none;">取消</a>
+    </div>
+</div>
+
+
+
+

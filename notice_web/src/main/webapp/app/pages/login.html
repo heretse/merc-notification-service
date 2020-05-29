@@ -1,0 +1,36 @@
+<div class="row login-head">
+    <div class="col-12"></div>
+</div>
+<div class="block-center mt-xl wd-xxxl">
+    <!-- START panel-->
+
+    <div class="panel panel-dark login-panel panel-flat" >
+        <div class="panel-heading">
+            <div class="panel-title">通知服务平台</div>
+        </div>
+        <div class="panel-body">
+            <form role="form" name="loginForm" novalidate="" class="form-validate mb-lg">
+                <div class="form-group has-feedback" style="margin-bottom: 18px;width: 200px;left: 74px;">
+                    <input id="exampleInputEmail1" type="text" name="account_email" placeholder="请输入账号"  ng-model="account.email" tabindex="1" required="" class="form-control" style="    font-size: 18px;"/>
+                    <label class="form-control-feedback text-muted" style="display: block;font-size: 20px;font-family: 微软雅黑; color: #2f2f2f; width: 70px;right: 196px;top: 0px;">{{"login.account"|translate}}</label>
+                </div>
+                <div class="form-group has-feedback" style="margin-bottom: 24px;width: 200px;left: 74px;">
+                    <input id="exampleInputPassword1" tabindex="2" type="password" name="account_password" placeholder="请输入密码" ng-model="account.password" required="" ng-keypress="press($event)" class="form-control"  style="    font-size: 18px;"/>
+                    <label class="form-control-feedback text-muted" style="display: block;font-size: 20px;font-family: 微软雅黑;color: #2f2f2f;width: 70px;right: 196px; top: 0px;">{{"login.pwd"|translate}}</label>
+                </div>
+                <a ng-click="login()" class="btn btn-block btn-login">{{"login.login"|translate}}</a>
+
+            </form>
+        </div>
+    </div>
+    <div class="down">
+        <img src="app/img/below.png">
+<!--        <div class="reflect"></div>
+        <div class="overlay"></div>-->
+    </div>
+</div>
+
+<div class="login-foot">
+    <div class="copyright">
+    </div>
+</div>

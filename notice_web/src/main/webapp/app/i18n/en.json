@@ -1,0 +1,177 @@
+{
+    "dashboard": {
+        "WELCOME": "GIOT IoT Cloud Platform"
+    },
+    "company": {
+        "logo": "logo.png",
+        "name": "博频科技股份有限公司",
+        "tel": "4008-900-778",
+        "teltitle": "Telephone",
+        "addr": "北京市东城区东直门外大街46号天恒大厦1003室（100027）",
+        "addrtitle": "Address",
+        "copyright": "Copyright © 2016 博频（上海）科技股份有限公司 | 版权所有 | 京ICP备15012940号"
+    },
+    "common": {
+        "lang": "en",
+        "search": "Search",
+        "query": "Query",
+        "create": "Create",
+        "edit": "Edit",
+        "delete": "Delete",
+        "add": "Add",
+        "operate": "Operate",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "back": "Back",
+        "default": "General",
+        "normal": "Normal",
+        "prompt": "Prompt",
+        "warning": "Warning",
+        "danger": "Danger",
+        "export": "Export",
+        "type": "Type",
+        "name": "Name",
+        "num": "Number",
+        "time": "Time",
+        "date":"Date",
+        "from": "From",
+        "to":"To",
+        "detail":"Details",
+        "close":"Close",
+        "cover":"Cover",
+        "status": "Status",
+        "other": "Others",
+        "all":"All",
+        "error": "Error",
+        "done": "Completed",
+        "return": "Return",
+        "loading": "Loading...",
+        "logout": "Logout",
+        "location": "Map Viewer",
+        "info": "Info",
+	    "region": "Region",
+        "lng": "Longitude",
+        "lat": "Latitude",
+        "coordinate": "Coordinates",
+        "terminal": "Terminal",
+        "updateTime": "Updated Time",
+        "inputTime": "Creation Time",
+        "unknown": "Unknown",
+        "noData ": "No Data",
+        "queryFailed ": "Search Failed！",
+        "loginFailed": "Login Failed!",
+        "noserv": "Service not available.",
+        "remark": "Remark",
+        "rssi": "Signal Strength",
+        "snr": "Signal Noise Ratio",
+        "electricity": "Voltage",
+        "channel": "Channel"
+    },
+    "pagination": {
+        "total": "Total",
+        "first": "First",
+        "previous": "Previous",
+        "next": "Next",
+        "last": "Last"
+    },
+    "topbar": {
+        "messages": {
+            "UNREAD": "Unread messages",
+            "MORE": "More messages"
+        },
+        "search": {
+            "PLACEHOLDER": "Type and hit enter.."
+        },
+        "notification": {
+            "MORE": "More notifications",
+            "read": "Set Read"
+        }
+    },
+    "sidebar": {
+        "WELCOME": "Welcome",
+        "heading": {
+            "HEADER": "Main Navigation",
+            "COMPONENTS": "Components",
+            "MORE": "More"
+        },
+        "home":{
+            "lastReport": "Last Report",
+            "macAddr": "Mac",
+            "alerts": "History Alerts"
+        },
+        "nav": {
+            "MENU_CUSTOMER": "Customer Management",
+            "MENU_REGISTER": "Activate User",
+            "MENU_USER": "User Management",
+            "MENU_LOG": "Operation Log",
+            "pages": {
+                "PAGES": "Pages",
+                "LOGIN": "Login",
+                "REGISTER": "Register",
+                "RECOVER": "Recover password",
+                "PROFILE": "Profile",
+                "LOCK": "Lock",
+                "STARTER": "Starter Template"
+            }
+        }
+    },
+    "login": {
+        "phone": "Enter Phone Number",
+        "password": "Enter Passwordr",
+        "remember": "Remember Me",
+        "login": "Login",
+        "title": "Login Smart Parking Cloud Platform"
+    },
+    "biz": {
+        "place": {
+            "parking": "Parking Lot",
+            "terminal": "Terminal",
+            "placeCode": "Parking Space Number",
+            "isUsed": "Occupied",
+            "unUsed": "Vacant"
+        }
+    },
+    "dev":{
+        "terminal": {
+            "deviceId": "SN",
+            "place": "Place",
+            "bindFacility": "Binding Id",
+            "mac": "MAC Address",
+            "workTemp": "Working Temperature",
+            "workHumi": "Working Humidity",
+            "weight": "Weight",
+            "material": "Material",
+            "binding": "Binded",
+            "notBind": "Unbinded",
+            "unknown": "Unknown",
+            "normal": "Normal",
+            "except": "Unnormal",
+            "isBound": "Is Bound",
+            "storageTime": "Storage Time",
+            "lastReport":"Last Report",
+            "history": "History"
+        }
+    },
+    "sys":{
+        "region": {
+            "parent": "City"
+        },
+        "user": {
+            "add": "Add User",
+            "edit": "Edit User",
+            "name": "User Name",
+            "nickname": "Nick Name",
+            "role": "Role",
+            "pass": "Password",
+            "confirmpass": "Confirm Password",
+            "tel": "Contact Phone Number",
+            "gender": "Gender",
+            "time": "Creation Time",
+            "code": "Employee Number",
+            "inputTime": "Creation Date",
+            "error": {
+                "1005": "User phone number already exists!"
+            }
+        }
+    }
+}

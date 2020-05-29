@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="row" style="border-bottom: 1px solid #e6e1e1;">
+        <div class="col-xs-12" style="margin-bottom: 10px; left: 18px;">
+            <span >{{"sidebar.local"|translate}}&nbsp;:&nbsp;{{"sidebar.nav.MENU_NOTICE"|translate}}&nbsp;<img src="app/img/menu/space.png">&nbsp;{{"sidebar.nav.MENU_GROUP"|translate}}</span>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="col-xs-12 " style="margin-top: 30px;background-color: #d2d6df; height: 10px;"></div>
+        <div class="col-xs-12" style="background-color: #ffffff;padding-top: 7px;padding-bottom: 7px;margin-bottom: 20px;">
+            <div class="col-xs-12 col-lg-10" style="padding-left: 0px;">
+                <div class="col-xs-12  col-lg-5" style="margin-left: -15px;">
+                    <div class="input-group form-group" style="margin-top: 15px;">
+                        <label class="input-group-addon" style="padding-left: 0px;background-color: transparent;">通&nbsp;&nbsp;报&nbsp;&nbsp;组&nbsp;:</label>
+                        <input ng-model="filter.gname" ng-keydown="doEnter($event)" placeholder="请输入通报组名称"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class=" col-xs-12 col-lg-7" style="margin-left: -15px;"></div>
+            </div>
+            <div class="col-xs-12 col-lg-2" style="padding-left: 0px;">
+                <div class="input-group form-group" style="margin-top: 15px;" id="searchBtn">
+                    <a class="btn btn-ssmp" ng-click="search()">
+                        <img style="margin-top: -2px;" src="app/img/search-btn.png" alt="search">&nbsp;&nbsp;查&nbsp;询
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;margin-bottom: 15px;">
+            <div class="col-md-12" style="left: 15px; width: 97.5%">
+                <div class="input-group form-group" style="margin-top: 0;margin-bottom: 0;">
+                    <div class="btn-group">
+                        <a class="btn btn-ssmp" ng-click="add()">
+                            <img src="app/img/add-btn.png" alt="add" style="position: relative;top: -2px;">&nbsp;新增通报组
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="table-responsive">
+                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th style="width:20%;">通报组名称</th>
+                            <th style="width:15%;">发报延时</th>
+                            <th style="width:15%;">创建人</th>
+                            <th style="width:25%;">创建时间</th>
+                            <th style="width:25%;text-align:center;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="node in nodes">
+                            <td>{{node.gname}}</a></td>
+                            <td>{{node.delayTime}}分钟</td>
+                            <td>{{node.createUser}}</td>
+                            <td>{{node.inTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td align="center">
+                                <a title="通报详情" style="display:inline-block;text-decoration:underline" ng-click="noticedetail(node)">通报详情</a>
+                                <a title="终端详情" style="display:inline-block;text-decoration:underline" ng-click="detail(node)">终端详情</a>
+                                <a title="{{'common.links' | translate}}" style="display:inline-block;text-decoration:underline" ng-click="related(node)">关联</a>
+                                <a title="{{'common.edit' | translate}}" style="display:inline-block;text-decoration:underline" ng-click="edit(node)">编辑</a>
+                                <a title="{{'common.delete' | translate}}" style="display:inline-block;color: red;" ng-click="delete(node)">删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.table-responsive -->
+                <label class="ngLabel ng-binding pull-left" style="padding-top: 10px;">{{"pagination.total"| translate}}: {{ 0 || total}}</label>
+                <ul class="pagination-sm pagination ng-isolate-scope ng-valid ng-dirty ng-valid-parse">
+                    <li>
+                        <a ng-click="goPage(pageNo)"><span class="fa fa-refresh"></span></a>
+                    </li>
+                </ul>
+                <uib-pagination max-size="5" boundary-links="true" total-items="total" ng-change="goPage(pageNo)" ng-model="pageNo" class="pagination-sm"
+                                previous-text="{{'pagination.previous' | translate}}" next-text="{{'pagination.next' | translate}}"
+                                first-text="{{'pagination.first' | translate}}" last-text="{{'pagination.last' | translate}}"></uib-pagination>
+            </div><!-- /span -->
+        </div><!-- /row -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
+<script type="text/ng-template" id="inf_noticegroups_detail.html">
+
+    <div class="modal-header" style="border: none !important;min-height: 50px;background-color: #27242b;">
+        <div style="position: absolute;left: 20px;font-size: 18px;line-height: 2em;color: white;">{{model.gname}}通报详情</div>
+        <a type="button"  class="close" style="margin-top: 4px;margin-right: -3px;" ng-click="cancel()"><img src="app/img/colse-model.png" alt="X"></a>
+    </div>
+    <div class="modal-body"  style="min-height: 580px;padding: 20px;">
+        <div class=" col-lg-12" style="border: 1px solid #e6e1e1;padding-top: 10px;padding-bottom: 10px;">
+            <div class="col-xs-12" >
+                <table  class="table table-ssmp-detail" style=" border: 1px solid #dcdada;margin-bottom: 40px;">
+                    <thead>
+                <tr>
+                    <th style="width: 25%">通报对象</th>
+                    <th style="width: 25%">通报方式</th>
+                    <th style="width: 50%">通报账号</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="node in nodes">
+                    <td>{{node.contactName}}</td>
+                    <td>{{node.contactMethod}}</td>
+                    <td title="{{node.contactAccount}}">{{node.contactAccount| cut:true:19}}</td>
+                </tr>
+                </tbody>
+                </table>
+            <label class="ngLabel ng-binding pull-left" style="padding-top: 10px;">{{"pagination.total"| translate}}: {{ 0 || total}}</label>
+            <ul class="pagination-sm pagination ng-isolate-scope ng-valid ng-dirty ng-valid-parse">
+                 <li>
+                     <a ng-click="goPage(pageNo)"><span class="fa fa-refresh"></span></a>
+                 </li>
+            </ul>
+            <uib-pagination style="margin-bottom: 20px;" max-size="5" boundary-links="true" total-items="total" ng-change="goPage(pageNo)" ng-model="pageNo" class="pagination-sm"
+                        previous-text="{{'pagination.previous' | translate}}" next-text="{{'pagination.next' | translate}}"
+                        first-text="{{'pagination.first' | translate}}" last-text="{{'pagination.last' | translate}}"></uib-pagination>
+        </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="inf_groupTerminal_detail.html">
+
+    <div class="modal-header" style="border: none !important;min-height: 50px;background-color: #27242b;">
+        <div style="position: absolute;left: 20px;font-size:18px;line-height: 2em;color: white;">{{model.gname}}终端详情</div>
+        <a type="button"  class="close" style="margin-top: 4px;margin-right: -3px;" ng-click="cancel()"><img src="app/img/colse-model.png" alt="X"></a>
+    </div>
+    <div class="modal-body"  style="min-height: 580px;padding: 20px;">
+        <div class="col-lg-12" style="border: 1px solid #e6e1e1;padding-top: 10px;padding-bottom: 10px;">
+            <div class="col-xs-12" >
+                <table  class="table table-ssmp-detail" style=" border: 1px solid #dcdada;margin-bottom: 40px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%">终端组名称</th>
+                            <th style="width: 35%">备注</th>
+                            <th style="width: 30%">创建时间</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                <tr ng-repeat="node in nodes">
+                    <td title="{{node.gtname}}">{{node.gtname| cut:true:13}}</td>
+                    <td title="{{node.remark}}">{{node.remark| cut:true:13}}</td>
+                    <td>{{node.inTime| date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                </tr>
+                </tbody>
+            </table>
+                <label class="ngLabel ng-binding pull-left" style="padding-top: 10px;">{{"pagination.total"| translate}}: {{ 0 || total}}</label>
+                <ul class="pagination-sm pagination ng-isolate-scope ng-valid ng-dirty ng-valid-parse">
+                    <li>
+                        <a ng-click="goPage(pageNo)"><span class="fa fa-refresh"></span></a>
+                    </li>
+                </ul>
+                <uib-pagination style="margin-bottom: 20px;" max-size="5" boundary-links="true" total-items="total" ng-change="goPage(pageNo)" ng-model="pageNo" class="pagination-sm"
+                                previous-text="{{'pagination.previous' | translate}}" next-text="{{'pagination.next' | translate}}"
+                                first-text="{{'pagination.first' | translate}}" last-text="{{'pagination.last' | translate}}"></uib-pagination>
+
+            </div>
+        </div>
+    </div>
+</script>

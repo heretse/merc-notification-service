@@ -1,0 +1,236 @@
+{
+    "dashboard": {
+        "WELCOME": "GIOT物联网云平台"
+    },
+    "company": {
+        "logo": "logo.png",
+        "name": "博频科技股份有限公司",
+        "tel": "4008-900-778",
+        "teltitle": "联系电话",
+        "addr": "北京市东城区东直门外大街46号天恒大厦1003室（100027）",
+        "addrtitle": "公司地址",
+        "copyright": "Copyright © 2017 博频（上海）科技股份有限公司 | 版权所有 | 京ICP备15012940号"
+    },
+    "common": {
+        "lang": "zh",
+        "search": "搜索",
+        "query": "查询",
+        "create": "创建",
+        "edit": "编辑",
+        "delete": "删除",
+        "add": "新增",
+        "submit": "提交",
+        "operate": "操作",
+        "confirm": "确定",
+        "cancel": "取消",
+        "back": "返回",
+        "links":"关联",
+        "default": "一般",
+        "normal": "正常",
+        "prompt": "提示",
+        "warning": "警告",
+        "danger": "危险",
+        "export": "导出",
+        "type": "类型",
+        "name": "名称",
+        "num": "数量",
+        "time": "时间",
+        "date": "日期",
+        "from": "从",
+        "to": "至",
+        "detail": "详情",
+        "close": "关闭",
+        "cover": "井盖",
+        "status": "状态",
+        "other": "其他",
+        "all": "全部",
+        "error": "错误",
+        "done": "完成",
+        "return": "返回",
+        "loading": "加载中...",
+        "logout": "退出登录",
+        "location": "位置查看",
+        "info": "提示信息",
+        "region": "区域",
+        "lng": "经度",
+        "lat": "纬度",
+        "coordinate": "坐标",
+        "terminal": "终端",
+        "updateTime": "更新时间",
+        "inputTime": "创建时间",
+        "unknown": "未知",
+        "noData ": "暂无数据",
+        "queryFailed ": "查询失败！",
+        "loginFailed": "账号或密码输入错误！",
+        "loginFailed2": "请检查网络连接或系统，登录失败！",
+        "noserv": "服务不可用。",
+        "remark": "备注",
+        "rssi": "信号强度",
+        "snr": "信噪比",
+        "electricity": "电压(V)",
+        "channel": "频道",
+        "errorCode": {
+            "1001": "用户名或密码错误",
+            "1002": "缺少参数",
+            "1003": "格式错误",
+            "1004": "需要登录",
+            "1005": "越权操作",
+            "1006": "内部调用错误",
+            "1007": "数据重复",
+            "1008": "数据重复",
+            "9999": "系统错误！",
+            "9998": "备注长度超过最大限制!",
+            "1000": "成功！",
+            "1009": "参数错误！",
+            "1010": "结果无数据！"
+        }
+    },
+    "pagination": {
+        "total": "总数",
+        "first": "首页",
+        "previous": "上一页",
+        "next": "下一页",
+        "last": "末页"
+    },
+    "topbar": {
+        "messages": {
+            "UNREAD": "未读消息",
+            "MORE": "更多消息"
+        },
+        "search": {
+            "PLACEHOLDER": "点击回车键.."
+        },
+        "notification": {
+            "MORE": "更多通知",
+            "read": "设为已读"
+        }
+    },
+    "sidebar": {
+        "local":"当前位置",
+        "WELCOME": "欢迎",
+        "heading": {
+            "HEADER": "主导航栏",
+            "COMPONENTS": "组件",
+            "MORE": "更多"
+        },
+        "bread": {
+            "app": {
+                "dev": {
+                    "index": "终端列表",
+                    "path": "终端轨迹",
+                    "chart": "信号强度",
+                    "data": "终端数据",
+                    "locate": "终端定位"
+                },
+                "path": {
+                    "index": "历史轨迹"
+                },
+                "fac": {
+                    "index": "基站列表",
+                    "edit": "信息编辑",
+                    "locate": "基站定位"
+                },
+                "mapping": {
+                    "index": "映射管理"
+                },
+                "hmap": {
+                    "index": "热力图",
+                    "data": "终端列表"
+                },
+                "locate": {
+                    "index": "铁塔地图"
+                },
+                "tower": {
+                    "index": "铁塔列表",
+                    "data": "终端列表"
+                },
+                "system": {
+                    "index": "系统配置"
+                }
+            }
+        },
+        "home": {
+            "lastReport": "报警时间",
+            "macAddr": "Mac地址",
+            "alerts": "历史拥堵",
+            "status": "实时路况",
+            "remark": "备  注",
+            "total": "路口总数",
+            "alarmNum": "当前拥堵数",
+            "jamNum": "当前滞留数"
+        },
+        "nav": {
+            "MENU_CUSTOMER": "客户管理",
+            "MENU_REGISTER": "开卡用户",
+            "MENU_LOG": "系统日志",
+            "MENU_FACILITY":"设施管理",
+            "MENU_TERMINAL":"终端管理",
+            "MENU_TERMINALGROUP":"终端组管理",
+            "MENU_NOTICE":"通报管理",
+            "MENU_PERSON":"通报对象管理",
+            "MENU_GROUP":"通报组管理",
+            "MENU_SYS":"系统管理",
+            "MENU_USER":"账号管理",
+            "pages": {
+                "PAGES": "Pages",
+                "LOGIN": "登录",
+                "REGISTER": "注册",
+                "RECOVER": "找回密码",
+                "PROFILE": "Profile",
+                "LOCK": "锁定",
+                "STARTER": "Starter Template"
+            }
+        }
+    },
+    "login": {
+        "phone": "请输入用户名",
+        "password": "请输入密码",
+        "remember": "记住密码",
+        "login": "登    录",
+        "title": "通知服务",
+        "account":"账 号：",
+        "pwd":"密 码："
+    },
+    "dev": {
+        "terminal": {
+            "name": "路口名称",
+            "deviceId": "设备标识",
+            "place": "区域",
+            "mac": "MAC",
+            "desc": "描述",
+            "code": "编号",
+            "rssi": "信号强度",
+            "snr": "信噪比",
+            "normal": "正常",
+            "except": "异常",
+            "unknown": "未知",
+            "isBound": "是否绑定传感器",
+            "isAlarm": "是否异常",
+            "storageTime": "入库时间",
+            "lastReport": "最后报警时间",
+            "history": "历史数据",
+            "workingCond": "工作条件",
+            "temp": "温度",
+            "alarm": {
+                "on": "报警",
+                "off": "正常"
+            }
+        }
+    },
+    "sys": {
+        "user": {
+            "add": "添加用户",
+            "edit": "编辑用户",
+            "name": "用户名",
+            "gender": "性别",
+            "pass": "密码",
+            "confirmpass": "确认密码",
+            "tel": "联系电话",
+            "code": "工号",
+            "inputTime": "创建时间",
+            "error": {
+                "1005": "用户电话号码重复。"
+            }
+        }
+    }
+}

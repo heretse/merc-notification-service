@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bp.notice.business.dao.TerminalDao">
+	<insert id="addTerminal">
+
+		INSERT IGNORE INTO
+		terminal(mac,in_time,remark,user_id,up_time)
+		VALUES
+		(#{mac},#{createTime},#{remark},#{userID},#{upTime})
+	</insert>
+
+	<delete id="deteTerminal">
+
+		DELETE FROM terminal WHERE id = #{id}
+	</delete>
+
+	<select id="queryTerminal" resultType="Map">
+
+		SELECT * FROM terminal a
+		<where>
+			1 = 1
+			<if test="mac!=null and mac !=''">
+
+				AND a.mac LIKE CONCAT('%','${mac}','%' )
+			</if>
+
+			<if test="start != null and start != ''">
+				<![CDATA[ AND a.in_time >= #{start}]]>
+			</if>
+			<if test="end != null and end != ''">
+				<![CDATA[ AND a.in_time <= #{end}]]>
+			</if>
+
+		</where>
+		ORDER BY a.id DESC
+
+		<if test="size!=null and page!=null ">
+
+			LIMIT ${(page-1)*size}, ${size}
+		</if>
+
+	</select>
+	<select id="countTerminal" resultType="Long">
+
+		SELECT COUNT(*) FROM terminal a
+
+		<where>
+			1 = 1
+			<if test="mac!=null and mac !=''">
+
+				AND a.mac LIKE CONCAT('%','${mac}','%')
+			</if>
+
+			<if test="start != null and start != ''">
+				<![CDATA[ AND a.in_time >= #{start}]]>
+			</if>
+			<if test="end != null and end != ''">
+				<![CDATA[ AND a.in_time <= #{end}]]>
+			</if>
+		</where>
+		ORDER BY a.id DESC
+	</select>
+
+	<insert id="insertGroup" useGeneratedKeys="true" keyProperty="aid"
+		keyColumn="id">
+		INSERT INTO t_group(gname)
+		VALUES(#{gname})
+	</insert>
+
+	<update id="updateTerminal">
+		UPDATE terminal
+		SET remark =#{remark},
+		up_time=SYSDATE()
+		WHERE mac=#{mac}
+	</update>
+
+
+</mapper>

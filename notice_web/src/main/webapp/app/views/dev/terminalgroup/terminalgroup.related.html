@@ -1,0 +1,60 @@
+<div class="modal-header" style="border: none !important;min-height: 50px;background-color: #27242b;">
+    <div style="position: absolute;left: 20px;font-size: 18px;line-height: 2em;color: white;">关联</div>
+    <a type="button"  class="close" style="margin-top: 4px;margin-right: -3px;" ng-click="exit()"><img src="app/img/colse-model.png" alt="X"></a>
+</div>
+
+<div class="modal-body" style="padding: 20px 20px 10px 20px;">
+    <div class=" col-md-12" style="border: 1px solid #e6e1e1;padding-top: 10px;padding-bottom: 30px;margin-bottom: 30px;">
+        <div class="col-md-12" style="margin-top: 25px;">
+            <div class="col-md-2 ">
+                <label >名称</label>
+            </div>
+            <div class="col-md-5">
+                <input type="text" ng-model="model.gtname"  readonly="readonly" maxlength="16"  class="form-control">
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 15px;">
+            <div class="col-md-2 ">
+                <label >关联终端</label>
+            </div>
+            <div class="col-md-10">
+                <div class="box1 ">
+                    <div class="select-bar">
+                        <input placeholder="模糊匹配未关联终端"  ng-model="keyWd"  style="width: 258px;margin-bottom: 5px;">
+                        <div style="background-color: #000000;width: 258px;height: 30px;color: #fafafa;text-align:center;line-height:30px;">MAC</div>
+                        <select multiple="multiple" id="select1" style="height: 210px;width: 258px;">
+                            <option  ng-repeat="nd in unbindmacs | filter: {mac: keyWd}">{{nd.mac}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-bar"    style ="margin-top: 86px;margin-left: 265px;">
+                    <input type="button" ng-click="add()" id="add" value=" > " style="width:50px;" /><br />
+                    <input type="button" ng-click="addAll()" id="addAll" value=" >> " style="width:50px;" /><br />
+                    <input type="button" ng-click="remove()" id="remove" value="&lt;" style="width:50px;" /><br />
+                    <input type="button" ng-click="removeAll()" id="removeAll" value="&lt;&lt;" style="width:50px;" /><br />
+                </div>
+                <div class="box2 " style="margin-left: 320px;">
+                    <div class="select-bar">
+                        <div style="background-color: #000000;width: 258px;height: 30px;margin-top: 47px;color: #fafafa;text-align:center;line-height:30px;">已选MAC</div>
+                        <select multiple="multiple" id="select2" style="height: 210px;width: 258px;">
+                            <option ng-repeat="nd in bindmacs track by $index">{{nd}}</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+    </div>
+        </div>
+
+</div>
+
+<div class="modal-footer" style="border: none !important;padding: 10px;">
+    <div class=" col-lg-12" style="text-align: center;margin-bottom: 25px;margin-top: 20px;">
+        <a class="btn btn-default pull-left" ng-click="confirm(model)" style="width: 80px; border-radius: 5px;margin-left: 286px;background: linear-gradient(#225288, #052973);border: none;color: #ffffff;">提交</a>
+        <a class="btn btn-default pull-right" ng-click="exit()" style="width: 80px; border-radius: 5px;margin-right: 286px;background: linear-gradient(#d8d5d5, #959595);border: none;">取消</a>
+    </div>
+</div>
+
+
+
+
